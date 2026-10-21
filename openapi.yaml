@@ -1,0 +1,149 @@
+openapi: 3.0.4
+info:
+  title: DTC Lookup
+  description: >-
+    DTC Lookup explains OBD-II diagnostic trouble codes such as P0301 or U0100.
+    It returns the code's system and standard title, which warning light it
+    turns on, and on paid plans the full description, likely causes ranked by
+    likelihood, symptoms, repair difficulty, estimated cost and labor hours, and
+    related codes. Carmaker-specific codes are covered for 32 makes.
+  termsOfService: https://apiverve.com/terms/
+  contact:
+    name: APIVerve Support
+    email: hello@apiverve.com
+    url: https://apiverve.com/contact
+  version: 1.0.0
+externalDocs:
+  description: Learn more about APIVerve
+  url: https://docs.apiverve.com?utm_source=openapi
+servers:
+  - url: https://api.apiverve.com/
+paths:
+  /v1/dtclookup:
+    get:
+      summary: DTC Lookup
+      description: >-
+        Get the meaning, causes, symptoms and repair estimate for one OBD-II
+        diagnostic trouble code
+      operationId: dtclookup
+      parameters:
+        - name: code
+          in: query
+          schema:
+            type: string
+          required: true
+          description: >-
+            The OBD-II trouble code: P, B, C or U followed by four characters,
+            for example P0301, U0100 or P2BAC
+          example: P0301
+        - name: make
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            The vehicle make, for carmaker-specific codes, for example Ford,
+            Chevrolet or Volkswagen
+          example: Ford
+        - name: lang
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            Language of the title, description, causes and symptoms of generic
+            codes
+          example: en
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: status
+                  error:
+                    type: string
+                    description: error
+                  data:
+                    type: object
+                    description: data
+              example:
+                status: ok
+                error: null
+                data:
+                  code: P0301
+                  found: true
+                  system: Powertrain
+                  subsystem: Ignition
+                  codeType: generic
+                  title: Cylinder 1 Misfire Detected
+                  description: >-
+                    Misfires concentrated on cylinder 1. A cylinder-specific
+                    code points away from shared causes (fuel pressure, MAF)
+                    toward components dedicated to that cylinder — coil, spark
+                    plug, injector, compression.
+                  warningLight: Check Engine Light
+                  affectedComponents:
+                    - ignition_coil
+                    - spark_plug
+                    - fuel_injector
+                  causes:
+                    - cause: Ignition coil for cylinder 1 failed
+                      likelihood: high
+                    - cause: Spark plug for cylinder 1 worn or fouled
+                      likelihood: high
+                    - cause: Cylinder 1 injector clogged
+                      likelihood: medium
+                    - cause: Low compression on cylinder 1
+                      likelihood: low
+                  symptoms:
+                    - Check engine light on or flashing
+                    - Rough idle and uneven running
+                    - Power loss, hesitation under acceleration
+                    - Increased fuel consumption
+                    - Possible smell of unburned fuel from exhaust
+                  repairDifficulty: easy
+                  diyPossible: true
+                  estimatedRepairCost:
+                    min: 40
+                    max: 800
+                    currency: EUR
+                  estimatedLaborHours:
+                    min: 0.3
+                    max: 4
+                  emissionsRelated: true
+                  limpModePossible: null
+                  relatedCodes:
+                    - P0302
+                    - P0303
+                    - P0304
+                    - P0305
+                    - P0306
+                    - P0307
+                    - P0308
+                    - P0309
+                    - P0310
+                    - P0311
+                    - P0312
+                  make: null
+                  manufacturer: null
+                  availableMakes: null
+                  language: en
+        '401':
+          description: Your request was not authorized, or your API Key was invalid
+        '404':
+          description: Requested resource was not found
+        '500':
+          description: A server error has occurred, try again later
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header
+security:
+  - api_key: []
