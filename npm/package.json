@@ -1,0 +1,47 @@
+{
+  "name": "@apiverve/dtclookup",
+  "version": "1.2.2",
+  "description": "DTC Lookup explains OBD-II diagnostic trouble codes such as P0301 or U0100. It returns the code's system and standard title, which warning light it turns on, and on paid plans the full description, likely causes ranked by likelihood, symptoms, repair difficulty, estimated cost and labor hours, and related codes. Carmaker-specific codes are covered for 32 makes.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "mocha",
+    "example": "node examples/basic.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apiverve/dtclookup-api.git",
+    "directory": "npm"
+  },
+  "keywords": [
+    "dtc lookup", "dtc codes", "obd2 codes", "obd2 code lookup", "diagnostic trouble codes"
+  ],
+  "author": {
+    "name": "APIVerve",
+    "email": "hello@apiverve.com",
+    "url": "https://apiverve.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apiverve/dtclookup-api/issues"
+  },
+  "homepage": "https://apiverve.com/marketplace/dtclookup?utm_source=npm&utm_medium=referral&utm_content=homepage",
+  "devDependencies": {
+    "mocha": "^11.0.1",
+    "chai": "^5.1.2",
+    "dotenv": "^16.4.7"
+  },
+  "dependencies": {
+    "axios": "1.13.2",
+    "form-data": "^4.0.1"
+  }
+}
