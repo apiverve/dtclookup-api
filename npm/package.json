@@ -1,6 +1,6 @@
 {
   "name": "@apiverve/dtclookup",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "DTC Lookup explains OBD-II diagnostic trouble codes such as P0301 or U0100. It returns the code's system and standard title, which warning light it turns on, and on paid plans the full description, likely causes ranked by likelihood, symptoms, repair difficulty, estimated cost and labor hours, and related codes. Carmaker-specific codes are covered for 32 makes.",
   "main": "index.js",
   "types": "index.d.ts",
