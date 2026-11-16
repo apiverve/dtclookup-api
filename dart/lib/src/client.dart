@@ -49,8 +49,8 @@ final _formatPatterns = {
 /// For more information, visit: https://apiverve.com/marketplace/dtclookup?utm_source=dart&utm_medium=referral&utm_content=readme
 ///
 /// Parameters:
-/// * [code] (required) - The OBD-II trouble code: P, B, C or U followed by four characters, for example P0301, U0100 or P2BAC [maxLength: 10]
-/// * [make] - The vehicle make, for carmaker-specific codes, for example Ford, Chevrolet or Volkswagen [maxLength: 40]
+/// * [code] (required) - The OBD-II trouble code: P, B, C or U followed by four characters, for example P0301, U0100 or P2BAC. A VAG (VW, Audi, SEAT, Skoda) 5-digit code in the OBD-II ranges is also accepted, for example 16684 for P0300 [maxLength: 10]
+/// * [make] - The vehicle make, for carmaker-specific codes, for example Ford, Chevrolet, Audi or Lexus. Brands that share a code list answer from it, so Audi, SEAT and Skoda use the Volkswagen list and Lexus uses Toyota's [maxLength: 40]
 /// * [lang] - Language of the title, description, causes and symptoms of generic codes
 class DtclookupClient {
   final String apiKey;
